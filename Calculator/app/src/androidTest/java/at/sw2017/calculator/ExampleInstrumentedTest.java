@@ -55,4 +55,94 @@ public class ExampleInstrumentedTest {
         onView(withText("C")).perform(click());
         }
 
+
+    @Test
+    public void testInputField() {
+        for(int i= 9; i >= 0; i--) {
+            onView(withText(Integer.toString(i))).perform(click());
+        }
+        onView(withText("9876543210")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testClearButton() {
+        onView(withText("3")).perform(click());
+        onView(withText("C")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("0")));
+    }
+
+    @Test
+    public void testAddition() {
+        onView(withText("2")).perform(click());
+        onView(withText("+")).perform(click());
+        onView(withText("4")).perform(click());
+        onView(withText("=")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("6")));
+    }
+
+    @Test
+    public void testSubtraction() {
+        onView(withText("9")).perform(click());
+        onView(withText("-")).perform(click());
+        onView(withText("2")).perform(click());
+        onView(withText("=")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("7")));
+
+        onView(withText("C")).perform(click());
+        onView(withText("4")).perform(click());
+        onView(withText("-")).perform(click());
+        onView(withText("5")).perform(click());
+        onView(withText("=")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("-1")));
+    }
+
+    @Test
+    public void testMultiplication() {
+        onView(withText("2")).perform(click());
+        onView(withText("*")).perform(click());
+        onView(withText("3")).perform(click());
+        onView(withText("=")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("6")));
+
+        onView(withText("*")).perform(click());
+        onView(withText("0")).perform(click());
+        onView(withText("=")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("0")));
+    }
+
+    @Test
+    public void testDivision() {
+        onView(withText("9")).perform(click());
+        onView(withText("/")).perform(click());
+        onView(withText("3")).perform(click());
+        onView(withText("=")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("3")));
+
+        onView(withText("/")).perform(click());
+        onView(withText("0")).perform(click());
+        onView(withText("=")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("0")));
+    }
+
+    @Test
+    public void testWrongInput() {
+        onView(withText("1")).perform(click());
+        onView(withText("=")).perform(click());
+
+        onView(withId(R.id.textView)).check(matches(withText("1")));
+    }
+
+
+
+
+
+    //TO DO : Test für nicht überprüfte Cases
 }
